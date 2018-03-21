@@ -19,13 +19,11 @@ require_once "data.php";
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <?php
-                if (isset($data))
-                {
-                    foreach( $data as $pageSlug => )
-                    {
-                        li( $key['nav-title'].'.php', $pageSlug['nav-title']);
+                    foreach( $data as $pageSlug => $pageData) {
+                        // nav-title - slug - ??
+                        li($pageData['nav-title'], $pageSlug, $page);
+
                     }
-                }
                 ?>
             </ul>
         </div>
