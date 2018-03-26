@@ -3,7 +3,7 @@
 $data = [
     "les-teletubbies" =>
         [
-            'title' => 'Teletubbies',
+            'title' => 'Les Teletubbies',
             'h1' => 'Teletubbies',
             'p' => 'C\'est flippant.',
             'span-text' => 'omg',

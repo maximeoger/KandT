@@ -1,6 +1,6 @@
 <?php
 require_once 'includes/data.php';
-$page = &$data["les-teletubbies"];
+//$page = &$data["les-teletubbies"];
 
 define('APP_DEFAULT_PAGE', 'les-teletubbies');
 
@@ -9,8 +9,8 @@ if(!isset($data[APP_DEFAULT_PAGE])) {
 }
 $pageKey = $_GET['page'] ?? APP_DEFAULT_PAGE;
 if (!isset($data[$_GET['page']])) {
+    var_dump($_GET);
     $page = &$data[APP_DEFAULT_PAGE];
-
 }else{
     $page = &$data[$pageKey] ?? null;
 }

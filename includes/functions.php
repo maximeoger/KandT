@@ -10,6 +10,9 @@ function li($linkText, $page, $activePage)
     if($page === $activePage){
         $active = ' class="active" ';
     }
+
+    // Select slug from
 ?>
     <li<?=$active?>><a href="?page=<?=$page?>"><?=$linkText?></a></li>
-<?php
+
+

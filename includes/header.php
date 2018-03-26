@@ -22,7 +22,6 @@ require_once "data.php";
                     foreach( $data as $pageSlug => $pageData) {
                         // nav-title - slug - ??
                         li($pageData['nav-title'], $pageSlug, $page);
-
                     }
                 ?>
             </ul>
