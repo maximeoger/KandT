@@ -1,6 +1,26 @@
 <?php
 require_once "includes/functions.php";
-require_once "data.php";
+//require_once "data.php";
+require_once "includes/connect.php";
+/* requette */
+$request = "SELECT
+    `id`,
+    `title`,
+    `h1`,
+    `p`,
+    `span-text`,
+    `span-class`,
+    `img-src`,
+    `img-alt`,
+    `nav-title`,
+    `slug`
+FROM
+    `pages`
+WHERE
+    slug = :slug
+;";
+$stmt = $conn->prepare($request);
+$stmt->execute();
 ?>
 <!DOCTYPE html>
 <html lang="en">

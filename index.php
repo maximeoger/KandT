@@ -1,6 +1,6 @@
 <?php
 require_once 'includes/data.php';
-
+require_once'includes/connect.php';
 
 /*
  * définie une constante APP_DEFAULT_PAGE

@@ -2,8 +2,7 @@
 
 
 try {
-    $pdo = new PDO('mysql:host=localhost;dbname=kandt', root, root);
+    $conn = new PDO('mysql:host=localhost;dbname=kandt;host=127.0.0.1','root','root');
 } catch(PDOException $e) {
-    echo "Erreur ! :" . $e -> getMessage() . "<br/>";
-    die();
+    die("Erreur ! :".$e->getMessage());
 }
