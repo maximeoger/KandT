@@ -7,12 +7,12 @@ function li($linkText, $page, $activePage)
     $active = "";
     // si le contenu de la variable $page est strictement égal
     // a la dernière composante de l'url (donc le nom de la page)
-    if($page === $activePage){
+    if ($page === $activePage) {
         $active = ' class="active" ';
     }
 
     // Select slug from
-?>
-    <li<?=$active?>><a href="?page=<?=$page?>"><?=$linkText?></a></li>
-
-
+    ?>
+    <li<?= $active ?>><a href="?page=<?= $page ?>"><?= $linkText ?></a></li>
+    <?php
+}

@@ -1,15 +1,28 @@
 <?php
 require_once 'includes/data.php';
-//$page = &$data["les-teletubbies"];
 
+
+/*
+ * définie une constante APP_DEFAULT_PAGE
+ * dont la valeur est la chaine "les-teletubbies"
+ * (le slug de la page par défaut)
+ */
 define('APP_DEFAULT_PAGE', 'les-teletubbies');
 
+/*
+ * Si APP_DEFAULT_PAGE n'existe pas (!isset), envoie une erreur
+ */
 if(!isset($data[APP_DEFAULT_PAGE])) {
-    die('lol');
+    die('omfg');
 }
+/*
+ * définie une variable $pageKey dont la valeur
+ * sera égale à $_GET['page'] si celle-çi existe,
+ * ou à APP_DEFAULT_PAGE sinon
+ */
 $pageKey = $_GET['page'] ?? APP_DEFAULT_PAGE;
+
 if (!isset($data[$_GET['page']])) {
-    var_dump($_GET);
     $page = &$data[APP_DEFAULT_PAGE];
 }else{
     $page = &$data[$pageKey] ?? null;
