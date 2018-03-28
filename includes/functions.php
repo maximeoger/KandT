@@ -1,8 +1,9 @@
 <?php
+require_once'includes/connect.php';
 
 // generation automatique des LIs en fonction
 // du nom de la page appellée via 'title' dans $data
-function li($linkText, $page, $activePage)
+function createLi($linkText, $page, $activePage)
 {
     $active = "";
     // si le contenu de la variable $page est strictement égal
@@ -10,7 +11,6 @@ function li($linkText, $page, $activePage)
     if ($page === $activePage) {
         $active = ' class="active" ';
     }
-
     // Select slug from
     ?>
     <li<?= $active ?>><a href="?page=<?= $page ?>"><?= $linkText ?></a></li>

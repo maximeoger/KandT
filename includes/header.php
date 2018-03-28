@@ -1,26 +1,17 @@
 <?php
 require_once "includes/functions.php";
-//require_once "data.php";
 require_once "includes/connect.php";
 /* requette */
-$request = "SELECT
-    `id`,
-    `title`,
-    `h1`,
-    `p`,
-    `span-text`,
-    `span-class`,
-    `img-src`,
-    `img-alt`,
-    `nav-title`,
-    `slug`
+
+$get_nav_infos = "SELECT
+  `slug`,
+  `nav-title`
 FROM
-    `pages`
-WHERE
-    slug = :slug
-;";
-$stmt = $conn->prepare($request);
-$stmt->execute();
+  `pages`
+  ;";
+$nav = $kandt_db->prepare($get_nav_infos);
+$nav->execute();
+$currentPage = $_GET['page'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,10 +30,15 @@ $stmt->execute();
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <?php
+                /*
                     foreach( $data as $pageSlug => $pageData) {
                         // nav-title - slug - ??
-                        li($pageData['nav-title'], $pageSlug, $page);
+                        createLi($pageData['nav-title'], $pageSlug, $page);
                     }
+                */
+                while ($navRow = $nav->fetch(PDO::FETCH_ASSOC)):
+                    createLi($navRow['nav-title'], $navRow['slug'], $currentPage);
+                endwhile;
                 ?>
             </ul>
         </div>
