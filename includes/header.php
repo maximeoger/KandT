@@ -1,6 +1,17 @@
 <?php
 require_once "includes/functions.php";
-require_once "data.php";
+require_once "includes/connect.php";
+/* requette */
+
+$get_nav_infos = "SELECT
+  `slug`,
+  `nav-title`
+FROM
+  `pages`
+  ;";
+$nav = $kandt_db->prepare($get_nav_infos);
+$nav->execute();
+$currentPage = $_GET['page'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,10 +30,15 @@ require_once "data.php";
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <?php
+                /*
                     foreach( $data as $pageSlug => $pageData) {
                         // nav-title - slug - ??
-                        li($pageData['nav-title'], $pageSlug, $page);
+                        createLi($pageData['nav-title'], $pageSlug, $page);
                     }
+                */
+                while ($navRow = $nav->fetch(PDO::FETCH_ASSOC)):
+                    createLi($navRow['nav-title'], $navRow['slug'], $currentPage);
+                endwhile;
                 ?>
             </ul>
         </div>

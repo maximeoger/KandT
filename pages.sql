@@ -37,11 +37,6 @@ CREATE TABLE `pages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-INSERT INTO `pages`
-  (`id`, `title`, `h1`, `p`, `span-text`, `span-class`, `img-src`, `img-alt`, `nav-title`, `slug`)
-VALUES
-  (NULL, `Les Teletubbies`, `Teletubbies`, `C\'est flippant.`, `omg`, `label-danger`, `img/teletubbies.jpg`, `teletubbies`, `teletubbies` , `les-teletubbies` );
-
 
 --
 -- Dumping data for table `pages`
