@@ -24,7 +24,9 @@ function displayPagesData(\PDO $pdo): ?array
 {
     $sql = "SELECT
             `id`,
-            `title`
+            `title`,
+            `img-src`,
+            `img-alt`
         FROM
             `pages`
         ;";
@@ -35,7 +37,7 @@ function displayPagesData(\PDO $pdo): ?array
     while(false !== $row = $stmt->fetch(PDO::FETCH_ASSOC)):?>
         <tr>
             <td><?=$row["id"]?></td>
-            <td><img src="" alt="" height="50"></td>
+            <td><img src="img/<?=$row["img-src"]?>" alt="<?=$row["img-alt"]?>" height="50"></td>
             <td><?=$row["title"]?></td>
             <td>
                 <a href="edit.php?id=<?=$row["id"]?>">Editer la page</a>
