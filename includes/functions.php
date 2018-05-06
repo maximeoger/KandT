@@ -33,20 +33,41 @@ function displayPagesData(\PDO $pdo): ?array
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     handlePDOError($stmt);
-
-    while(false !== $row = $stmt->fetch(PDO::FETCH_ASSOC)):?>
-        <tr>
-            <td><?=$row["id"]?></td>
-            <td><img src="img/<?=$row["img-src"]?>" alt="<?=$row["img-alt"]?>" height="50"></td>
-            <td><?=$row["title"]?></td>
-            <td>
-                <a href="edit.php?id=<?=$row["id"]?>">Editer la page</a>
-                <a href="delete.php?id=<?=$row["id"]?>">Supprimer la page</a>
-            </td>
-        </tr>
-    <?php endwhile;
+    ?>
+    <div class="container">
+        <h2>Liste des pages</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">thumbnail</th>
+                    <th scope="col">titre</th>
+                    <th scope="col">editer</th>
+                    <th scope="col">supprimer</th>
+                </tr>
+            </thead>
+            <tbody>
+    <?php
+    while(false !== $row = $stmt->fetch(PDO::FETCH_ASSOC)):
+        $pagenb++;
+        ?>
+                <tr>
+                    <td scope="row"><?=$row["id"]?></td>
+                    <td><img src="img/<?=$row["img-src"]?>" alt="<?=$row["img-alt"]?>" height="50"></td>
+                    <td><?=$row["title"]?></td>
+                    <td><a href="edit.php?id=<?=$row["id"]?>">Editer la page</a></td>
+                    <td><a href="delete.php?id=<?=$row["id"]?>">Supprimer la page</a></td>
+                </tr>
+    <?php endwhile;?>
+            </tbody>
+        </table>
+    </div>
+    <?php
 }
-
+/*
+ * @param PDO $pdo database connection
+ *
+ */
 function displayPage(array $page) : void
 {
         ?>
