@@ -15,7 +15,7 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <?php displayNav(getNavData($pdo), $pageKey)?>
-                <li><a href="<?php printf("%s%s=%s", APP_URL_BASE, APP_PAGE_PARAM, 'admin')?>">admin</a></li>
+                <li><a href="admin.php">admin</a></li>
             </ul>
         </div>
 

@@ -15,26 +15,38 @@ function li($slug, $linkText, $pageKey)
     <li<?=$active?>><a href="<?php printf("%s%s=%s", APP_URL_BASE, APP_PAGE_PARAM, $slug)?>"><?=$linkText?></a></li>
     <?php
 }
-
 /**
  * display one page
  *
  * @param array $page
  */
+function displayPagesData(\PDO $pdo): ?array
+{
+    $sql = "SELECT
+            `id`,
+            `title`
+        FROM
+            `pages`
+        ;";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    handlePDOError($stmt);
+
+    while(false !== $row = $stmt->fetch(PDO::FETCH_ASSOC)):?>
+        <tr>
+            <td><?=$row["id"]?></td>
+            <td><img src="" alt="" height="50"></td>
+            <td><?=$row["title"]?></td>
+            <td>
+                <a href="edit.php?id=<?=$row["id"]?>">Editer la page</a>
+                <a href="delete.php?id=<?=$row["id"]?>">Supprimer la page</a>
+            </td>
+        </tr>
+    <?php endwhile;
+}
+
 function displayPage(array $page) : void
 {
-
-    if(isset($_GET['page']) && $_GET['page'] === 'admin'){
-        ?>
-        <div class="container theme-showcase" role="main">
-            <div class="jumbotron">
-                <h1>Admin</h1>
-                <p>Interface d'administration des pages</p>
-            </div>
-        </div>
-        <?php
-
-    }else{
         ?>
         <div class="container theme-showcase" role="main">
             <div class="jumbotron">
@@ -45,10 +57,7 @@ function displayPage(array $page) : void
             <img class="img-thumbnail" alt="<?=$page['img-alt']?>" src="img/<?=$page['img-src']?>" data-holder-rendered="true">
         </div>
         <?php
-    }
 }
-
-
 /**
  * @param PDO $pdo database connection
  * @param string $slug page slug
@@ -77,7 +86,6 @@ function getPageContent(\PDO $pdo, string $slug): ?array
         $stmt->execute();
         handlePDOError($stmt);
         if (false === $row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-
             return null;
         }
         return $row;

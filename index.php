@@ -5,9 +5,7 @@ require_once 'includes/functions.php';
 define('APP_DEFAULT_PAGE', 'les-teletubbies');
 define('APP_PAGE_PARAM', 'page');
 define('APP_URL_BASE', 'index.php?');
-
 $pageKey = $_GET[APP_PAGE_PARAM] ?? APP_DEFAULT_PAGE;
-
 try {
     $page = getPageContent($pdo, $pageKey);
     // gestion de l'affichage de la page par defaut si la page appelee n'existe pas (avec le status 404 http)
@@ -21,7 +19,6 @@ try {
 }
 include "includes/header.php";
 // factorisied the content display
-
 displayPage($page);
 include "includes/footer.php";
 ?>
