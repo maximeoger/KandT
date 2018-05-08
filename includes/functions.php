@@ -49,11 +49,10 @@ function displayPagesData(\PDO $pdo): ?array
             <tbody>
     <?php
     while(false !== $row = $stmt->fetch(PDO::FETCH_ASSOC)):
-        $pagenb++;
         ?>
                 <tr>
                     <td scope="row"><?=$row["id"]?></td>
-                    <td><img src="img/<?=$row["img-src"]?>" alt="<?=$row["img-alt"]?>" height="50"></td>
+                    <td><img src="../img/<?=$row["img-src"]?>" alt="<?=$row["img-alt"]?>" height="50"></td>
                     <td><?=$row["title"]?></td>
                     <td><a href="edit.php?id=<?=$row["id"]?>">Editer la page</a></td>
                     <td><a href="delete.php?id=<?=$row["id"]?>">Supprimer la page</a></td>
@@ -133,10 +132,8 @@ function getNavData(\PDO $pdo): array
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     handlePDOError($stmt);
-
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
 /**
  * @param PDOStatement $stmt
  * @throws Exception
