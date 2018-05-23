@@ -44,11 +44,12 @@ if ($row === false) {
     <div class="container">
         <div class="container theme-showcase">
             <div class="jumbotron">
+                <a href="admin.php">← Retour</a>
                 <h1>Page <?=$row['title']?></h1>
             </div>
             <div>
                 <form action="doedit.php" method="post">
-                    <input type="hidden" value="<?=$row['id']?>">
+                    <input type="hidden" name="id" value="<?=$row['id']?>">
                     <label for="">Titre</label><input type="text" name="title" value="<?=$row['title']?>">
                     <label for="">h1</label><input type="text" name="h1" value="<?=$row['h1']?>">
                     <label for="">p</label><input type="text" name="p" value="<?=$row['p']?>">
