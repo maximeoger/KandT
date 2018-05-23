@@ -1,34 +1,27 @@
 <?php
 require_once 'includes/connect.php';
+require_once 'includes/functions.php';
+
 define('APP_DEFAULT_PAGE', 'les-teletubbies');
+define('APP_PAGE_PARAM', 'page');
+define('APP_URL_BASE', 'index.php?');
+$pageKey = $_GET[APP_PAGE_PARAM] ?? APP_DEFAULT_PAGE;
+try {
+    $page = getPageContent($pdo, $pageKey);
+    // gestion de l'affichage de la page par defaut si la page appelee n'existe pas (avec le status 404 http)
+    if (is_null($page)) {
+        // recuperation de la page par defaut
+        http_response_code(404);
+        $page = getPageContent($pdo, APP_DEFAULT_PAGE);
+    }
+} catch(\Exception $exception) {
+    die("Ze pache you zearched vor iz not prezent");
+}
 include "includes/header.php";
-$get_content = "
-SELECT
-  `title`,
-  `h1`, 
-  `p`,
-  `span-text`, 
-  `span-class`, 
-  `img-src`, 
-  `img-alt`, 
-  `nav-title`, 
-  `slug`
-FROM
-  `pages`
-WHERE
-  `slug` = :slug
-;";
-$stmt = $kandt_db->prepare($get_content);
-$stmt->bindValue(':slug', $_GET['page']);
-$stmt->execute();
-$page = $stmt->fetch(PDO::FETCH_ASSOC);
+// factorisied the content display
+displayPage($page);
+include "includes/footer.php";
 ?>
-    <div class="container theme-showcase" role="main">
-        <div class="jumbotron">
-            <h1><?=$page['title']?></h1>
-            <p><?=$page['p']?></p>
-            <span class="label <?=$page['span-class']?>"><?=$page['span-text']?></span>
-        </div>
-        <img class="img-thumbnail" alt="<?=$page['img-alt']?>" src="<?=$page['img-src']?>"data-holder-rendered="true">
-    </div>
-<?php include "includes/footer.php" ?>
+<script>
+
+</script>
